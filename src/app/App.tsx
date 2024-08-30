@@ -1,6 +1,6 @@
 import {FC} from 'react'
-import {ConfigProvider} from "./context/ConfigProvider.tsx";
-import {router} from "./router/router/router.tsx";
+import {ConfigProvider} from "@/app/context/ConfigProvider";
+import {router} from "@/app/router/router/router";
 import { useRoutes } from 'react-router-dom'
 
 export const App : FC = () => {

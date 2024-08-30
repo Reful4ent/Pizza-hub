@@ -8,18 +8,19 @@ export const ConfigProvider: FC<PropsWithChildren> = ({ children }) => {
 
     const [config, setConfig] = useState<IContext | null>(null)
 
-    const getConf = useCallback(async () => {
+    const getConfigFrom = useCallback(async () => {
         const result = getConfig().then((response) => {
-            setConfig({headerContext:{
-                    name: response.name,
-                    iconUrl: response.icon.data.attributes.url,
-                }})
+            setConfig(
+                {headerContext:{
+                        name: response.name,
+                        iconUrl: response.icon.data ? response.icon.data.attributes.url : null,
+                    }})
         });
     },[])
 
     useEffect(() => {
-        getConf()
-    }, [getConf]);
+        getConfigFrom()
+    }, [getConfigFrom]);
 
 
     return (

@@ -5,7 +5,14 @@ export default {
       "./src/**/*.{js,ts,jsx,tsx}"
   ],
   theme: {
-    extend: {},
+    extend: {
+        fontFamily: {
+            'openSans': ['OpenSans','sans-serif'],
+        },
+        boxShadow: {
+            'custom': '0px 0px 49px 9px #00000026'
+        }
+    },
   },
   plugins: [],
 }

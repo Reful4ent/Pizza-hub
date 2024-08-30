@@ -1,24 +1,24 @@
-
-import {token} from "@/shared/api/token";
+import axios from "axios";
 import {urlRoute} from "@/shared/api/route";
-import axios from "axios"
+import {token} from "@/shared/api/token";
 
 
-export const getConfig = async ()=> {
+export const getPizzas = async () => {
     try {
         const response = await axios.get(
             urlRoute +
-            '/api' +
-            '/config?populate=*',
+            '/api'+
+            '/pizzas?populate=*',
             {
-                headers:{
+                headers: {
                     'Authorization': `Bearer ` + token,
                 }
             }
-        );
-        return response.data.data.attributes;
+        )
+
+        return response.data.data;
     } catch (error) {
-        console.log(error);
+        console.error(error);
         return null;
     }
 }

@@ -1,13 +1,14 @@
 import {FC} from "react";
-import {useConfig} from "@/app/context/context";
-import {Logo} from "@/shared/ui/SvgComponents/Logo/ui/Logo";
+import {Logo} from "@/shared/ui/Logo/ui/Logo";
 
 export const Header: FC = () => {
-    const config = useConfig()
+
 
     return(
         <>
-            <Logo text={config?.context?.headerContext.name} iconUrl={config?.context?.headerContext.iconUrl}/>
+            <header className="grid grid-cols-3 items-center justify-items-center justify-end px-[5%] py-[5px] border-b border-black">
+                <Logo/>
+            </header>
         </>
     )
 }
