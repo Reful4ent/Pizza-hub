@@ -1,27 +1,20 @@
 import {FC, useCallback, useEffect, useState} from "react";
 import {getPizzas} from "@/shared/api/pizza/methods";
 import {ProductCard} from "@/entities/ProductCard/ui/ProductCard";
+import {productConverter, ProductConverter} from "@/widgets/ProductList/ProductConverter";
+import {ProductList} from "@/widgets/ProductList/ui/ProductList";
+import {ProductCardProps} from "@/entities/ProductCard/types";
 
 
 export const MenuPage: FC = () => {
 
-    const [list, setList] = useState({
-        name: "null",
-        description: "null",
-        price: 10,
-        imageUrl: null,
-        ingredients: null,
-    });
+    const [list, setList] = useState(null);
 
     const fetchData = useCallback(async () => {
         const result = await getPizzas().then((result) => {
-            setList({
-                name: result[0].attributes.name,
-                description: result[0].attributes.description,
-                price: result[0].attributes.price,
-                imageUrl: result[0].attributes.images.data[0].attributes.url,
-                ingredients: null,
-            });
+            let covertedList = [];
+            result.forEach(element => covertedList.push(productConverter(element)))
+            setList(covertedList);
         })
     },[])
 
@@ -32,8 +25,8 @@ export const MenuPage: FC = () => {
     ///configItems.icon.data.attributes.url
     return (
         <>
-           <div className="flex items-center justify-center">
-               <ProductCard pizzaCard={list}></ProductCard>
+           <div className="grid grid-cols-9">
+               <ProductList list={list}/>
            </div>
         </>
     )
