@@ -30,3 +30,8 @@
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
+
+.li-item:hover{
+    border-left: 5px solid #FFC107;
+}

@@ -1,4 +1,5 @@
 import {IngridientProps} from "@/entities/Ingridient/types";
+import {CategoryItem} from "@/features/CategoriesList/types";
 
 export interface IProduct {
     productCard: ProductCardProps | null | undefined,
@@ -7,7 +8,8 @@ export interface IProduct {
 export type ProductCardProps = {
     name: string;
     description: string;
-    price: number,
-    imageUrl: string | null;
+    price: object,
+    category: CategoryItem,
+    images: string[];
     ingredients: IngridientProps[] | null;
 }

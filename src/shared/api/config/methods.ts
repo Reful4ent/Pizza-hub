@@ -8,7 +8,6 @@ export const getConfig = async ()=> {
     try {
         const response = await axios.get(
             urlRoute +
-            '/api' +
             '/config?populate=*',
             {
                 headers:{

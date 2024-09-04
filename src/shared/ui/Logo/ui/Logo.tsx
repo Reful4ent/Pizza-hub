@@ -13,7 +13,7 @@ export const Logo: FC = () => {
             <div className="flex flex-row items-center">
                 {config?.context?.headerContext.iconUrl
                     &&
-                    <img className="w-[12%] h-[12%] flex items-center mx-[10px]" src={urlRoute + config?.context?.headerContext.iconUrl} alt="icon"/>
+                    <img className="w-[12%] h-[12%] flex items-center mx-[10px]" src={config?.context?.headerContext.iconUrl} alt="icon"/>
                 }
                 <p className="font-bold font-openSans xl:text-[250%] lg:text-[200%] md:text-[100%] ">{config?.context?.headerContext.name}</p>
 

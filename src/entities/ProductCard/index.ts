@@ -1,0 +1,1 @@
+export * from '@/entities/ProductCard/ui/ProductCard'
