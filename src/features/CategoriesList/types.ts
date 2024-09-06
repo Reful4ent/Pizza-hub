@@ -1,4 +1,5 @@
 
+
 export type CategoryConverterFunc = (categoryToConvert: any) => CategoryItem;
 
 export type CategoryItem = {
@@ -6,7 +7,9 @@ export type CategoryItem = {
     name: string;
 }
 
+
+
 export type CategoriesListProps = {
-    categories: CategoryItem[];
+    categories: CategoryItem[] | null;
     onClick: (id: number) => void;
 }

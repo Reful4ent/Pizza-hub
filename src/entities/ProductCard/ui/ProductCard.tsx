@@ -9,7 +9,7 @@ export const ProductCard = memo<IProduct>(({productCard}) => {
     const [product, setProduct] = useState<ProductCardProps | null>(null);
 
     const handleAddClick = () => {
-
+        console.log(product)
     }
 
     useEffect(() => {

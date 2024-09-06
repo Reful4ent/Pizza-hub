@@ -1,6 +1,9 @@
 import {IngridientProps} from "@/entities/Ingridient/types";
 import {CategoryItem} from "@/features/CategoriesList/types";
 
+
+export type ProductConverterFunc = (productToConvert: any) => ProductCardProps;
+
 export interface IProduct {
     productCard: ProductCardProps | null | undefined,
 }
@@ -13,3 +16,5 @@ export type ProductCardProps = {
     images: string[];
     ingredients: IngridientProps[] | null;
 }
+
+
