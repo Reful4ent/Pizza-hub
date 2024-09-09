@@ -1,1 +1,1 @@
-export const urlRoute = 'http://192.168.1.175:1337/api';
+export const urlRoute = 'http://192.168.52.217:1337/api';

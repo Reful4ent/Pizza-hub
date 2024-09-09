@@ -2,10 +2,11 @@ import {IProduct, ProductCardProps} from "@/entities/ProductCard/types";
 import {FC, memo, useEffect, useState} from "react";
 
 import {Spinner} from "@/shared/ui/Spinner/ui/Spinner";
-
+import {Link, useNavigate} from "react-router-dom";
 
 
 export const ProductCard = memo<IProduct>(({productCard}) => {
+    const navigate = useNavigate();
     const [product, setProduct] = useState<ProductCardProps | null>(null);
 
     const handleAddClick = () => {
@@ -18,7 +19,6 @@ export const ProductCard = memo<IProduct>(({productCard}) => {
         }
     }, [productCard]);
 
-    // console.log(product.price)
 
     return (
         <>
@@ -27,11 +27,15 @@ export const ProductCard = memo<IProduct>(({productCard}) => {
                     <div
                         className="m-[10px] p-[25px] w-[322px] h-[552px] border border-[#00000026] rounded-lg shadow-custom flex flex-col">
                         <div className="w-[100%] h-[55%] flex items-center justify-center">
-                            {product.images ?
-                                <img className="w-[100%] rounded-2xl mb-[10px] self-center" src={product.images[0]}
-                                     alt={product.name}/>
-                                :
-                                <img className="" src='' alt={product.name}/>}
+                            <Link to={"/product/"+product.id} state={{product: product}}>
+                                {product.images ?
+                                    <img className="w-[100%] rounded-2xl mb-[10px] self-center"
+                                         src={product.images[0]}
+                                         alt={product.name}
+                                    />
+                                    :
+                                    <img className="" src='' alt={product.name}/>}
+                            </Link>
                         </div>
                         <div className="w-[100%] h-[45%] flex flex-col">
                             <p className="font-openSans line-clamp-1 mb-[5px] font-medium text-[22px]">{product.name}</p>

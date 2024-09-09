@@ -1,7 +1,6 @@
 import {FC} from "react";
 import {IProductList} from "@/widgets/ProductList/types";
 import {ProductCard} from "@/entities/ProductCard";
-import {IngridientProps} from "@/entities/Ingridient/types";
 
 
 
@@ -15,27 +14,26 @@ export const ProductList: FC<IProductList> = ({searchFilter ,categoryId, list}) 
                     {
                         list
                             ?.filter((element) => {
-                            if(categoryId === 0) {
-                                return element;
-                            } else if (element?.category?.id === categoryId) {
-                                return element;
-                            }
+                                if(categoryId === 0) {
+                                    return element;
+                                } else if (element?.category?.id === categoryId) {
+                                    return element;
+                                }
                             })
                             ?.filter((element) => {
                                 if(searchFilter === '') {
                                     return element
                                 } else if(element?.name.toLowerCase().includes(searchFilter) ||
                                     element?.description?.includes(searchFilter) ||
-                                    IsIngridientContainsFilter(searchFilter,element?.ingredients)) {
-                                    console.log(element)
+                                    IsIngridientContainsFilter(searchFilter, element?.ingredients)) {
                                     return element;
                                 }
                             })
                             ?.map((element,index) => (
-                            <li className="m-[20px]" key={index}>
-                                <ProductCard productCard={element}/>
-                            </li>
-                        ))
+                                <li className="m-[20px]" key={index}>
+                                    <ProductCard productCard={element}/>
+                                </li>
+                            ))
                     }
                 </ul>
             </div>
@@ -44,7 +42,7 @@ export const ProductList: FC<IProductList> = ({searchFilter ,categoryId, list}) 
 }
 
 
-const IsIngridientContainsFilter = (searchFilter: string, ingridients) => {
+const IsIngridientContainsFilter = (searchFilter: string, ingridients: any) => {
     if(ingridients === null) {
         return false;
     }

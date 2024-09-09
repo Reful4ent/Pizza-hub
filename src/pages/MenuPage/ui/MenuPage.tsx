@@ -5,6 +5,7 @@ import {ProductList} from "@/widgets/ProductList";
 import {CategoriesList} from "@/features/CategoriesList";
 import {categoryConverter} from "@/features/CategoriesList/CategoryConverter";
 import {useSearchParams} from "react-router-dom"
+import {SearchInput} from "@/features/SearchProduct";
 
 
 export const MenuPage: FC = () => {
@@ -19,12 +20,11 @@ export const MenuPage: FC = () => {
 
     const handleCategoryClick= (id: number) => {
         setCategoryId(id);
-        setSearchParams({categoryId: categoryId})
+        setSearchParams({categoryId: id})
     }
 
 
-    const handleInputSubmit = (e) => {
-        console.log(e);
+    const handleInputSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const form = e.target;
         const query = form.search.value.toLowerCase();
@@ -48,13 +48,8 @@ export const MenuPage: FC = () => {
     return (
         <>
            <div className="grid grid-cols-5">
-               <div className="product-search-container">
-                   <form className="product-search" autoComplete="off" onSubmit={handleInputSubmit}>
-                       <input className='product-search__input' placeholder='Search...' type='search' name='search'/>
-                       <button className="bg-blue-800 p-[20px]" type="submit">фывфы</button>
-                   </form>
-               </div>
-               <ProductList searchFilter={searchQuery} categoryId={categoryId} list={list}/>
+               <SearchInput onSubmit={handleInputSubmit} />
+               <ProductList searchFilter={searchQuery} categoryId={Number(categoryIdQuery)} list={list}/>
                <CategoriesList categories={categories} onClick={handleCategoryClick}/>
            </div>
         </>

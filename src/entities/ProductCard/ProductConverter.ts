@@ -4,6 +4,7 @@ import {ingridientsConverter} from "@/entities/Ingridient/IngridientsConverter";
 
 export const productConverter: ProductConverterFunc = (productToConvert) => {
     return {
+        id: productToConvert.id,
         name: productToConvert.attributes.name,
         description: productToConvert.attributes.description,
         price: productToConvert.attributes.price,
