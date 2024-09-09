@@ -1,4 +1,4 @@
-import {ProductCardProps} from "@/entities/ProductCard/types";
+import {ProductCardProps} from "@/entities/Product/ProductCard/types";
 
 
 export interface IProductList{

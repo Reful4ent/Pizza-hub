@@ -1,7 +1,6 @@
 import {FC} from "react";
 import {IProductList} from "@/widgets/ProductList/types";
-import {ProductCard} from "@/entities/ProductCard";
-
+import {ProductCard} from "@/entities/Product/ProductCard";
 
 
 export const ProductList: FC<IProductList> = ({searchFilter ,categoryId, list}) =>{
@@ -23,9 +22,9 @@ export const ProductList: FC<IProductList> = ({searchFilter ,categoryId, list}) 
                             ?.filter((element) => {
                                 if(searchFilter === '') {
                                     return element
-                                } else if(element?.name.toLowerCase().includes(searchFilter) ||
+                                } else if(element?.name?.toLowerCase().includes(searchFilter) ||
                                     element?.description?.includes(searchFilter) ||
-                                    IsIngridientContainsFilter(searchFilter, element?.ingredients)) {
+                                    IsIngredientContainsFilter(searchFilter, element?.ingredients)) {
                                     return element;
                                 }
                             })
@@ -42,14 +41,14 @@ export const ProductList: FC<IProductList> = ({searchFilter ,categoryId, list}) 
 }
 
 
-const IsIngridientContainsFilter = (searchFilter: string, ingridients: any) => {
+const IsIngredientContainsFilter = (searchFilter: string, ingridients: any) => {
     if(ingridients === null) {
         return false;
     }
 
     for (let i = 0; i < ingridients.length; i++) {
-        if (ingridients[i]?.name.toLowerCase().includes(searchFilter) ||
-        ingridients[i]?.description.toLowerCase().includes(searchFilter)) {
+        if (ingridients[i]?.name?.toLowerCase().includes(searchFilter) ||
+        ingridients[i]?.description?.toLowerCase().includes(searchFilter)) {
             return true;
         }
     }

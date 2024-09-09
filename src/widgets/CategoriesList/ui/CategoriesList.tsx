@@ -1,5 +1,5 @@
 import {FC} from "react";
-import {CategoriesListProps} from "@/features/CategoriesList/types";
+import {CategoriesListProps} from "@/widgets/CategoriesList/types";
 
 
 export const CategoriesList: FC<CategoriesListProps> = ({categories, onClick}) => {
@@ -14,6 +14,7 @@ export const CategoriesList: FC<CategoriesListProps> = ({categories, onClick}) =
                             key={0}
                             onClick={() => onClick(0)}
                         >Все</li>
+
                         {categories?.map((category, index) => (
                             <li
                                 className="mt-[5px] mb-[5px] px-[10px] py-[5px] font-openSans text-[18px] bg-gradient-to-r from-[#00000026] to-[#fff] focus:bg-blue-800 li-item"
@@ -21,6 +22,7 @@ export const CategoriesList: FC<CategoriesListProps> = ({categories, onClick}) =
                                 onClick={() => onClick(category.id)}
                             >{category.name}</li>
                         ))}
+
                     </ul>
                 </div>
             </div>

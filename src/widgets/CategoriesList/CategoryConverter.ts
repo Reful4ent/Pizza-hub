@@ -1,4 +1,4 @@
-import {CategoryConverterFunc} from "@/features/CategoriesList/types";
+import {CategoryConverterFunc} from "@/widgets/CategoriesList/types";
 
 
 export const categoryConverter: CategoryConverterFunc = (categoryToConvert) => {

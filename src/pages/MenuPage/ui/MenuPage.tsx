@@ -1,9 +1,9 @@
 import {FC, useCallback, useEffect, useState} from "react";
 import {getCategories, getProducts} from "@/shared/api/product/methods";
-import {productConverter} from "@/entities/ProductCard";
+import {productConverter} from "@/entities/Product/ProductConverter";
 import {ProductList} from "@/widgets/ProductList";
-import {CategoriesList} from "@/features/CategoriesList";
-import {categoryConverter} from "@/features/CategoriesList/CategoryConverter";
+import {CategoriesList} from "@/widgets/CategoriesList";
+import {categoryConverter} from "@/widgets/CategoriesList/CategoryConverter";
 import {useSearchParams} from "react-router-dom"
 import {SearchInput} from "@/features/SearchProduct";
 
@@ -20,7 +20,7 @@ export const MenuPage: FC = () => {
 
     const handleCategoryClick= (id: number) => {
         setCategoryId(id);
-        setSearchParams({categoryId: id})
+        setSearchParams({categoryId: String(id)})
     }
 
 
@@ -28,7 +28,7 @@ export const MenuPage: FC = () => {
         e.preventDefault();
         const form = e.target;
         const query = form.search.value.toLowerCase();
-        setSearchParams({categoryId: categoryId, searchQuery: query})
+        setSearchParams({categoryId: String(categoryId), searchQuery: query})
     }
 
 

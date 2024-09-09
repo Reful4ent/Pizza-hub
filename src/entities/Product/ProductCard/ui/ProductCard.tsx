@@ -1,4 +1,4 @@
-import {IProduct, ProductCardProps} from "@/entities/ProductCard/types";
+import {IProduct, ProductCardProps} from "@/entities/Product/ProductCard/types";
 import {FC, memo, useEffect, useState} from "react";
 
 import {Spinner} from "@/shared/ui/Spinner/ui/Spinner";

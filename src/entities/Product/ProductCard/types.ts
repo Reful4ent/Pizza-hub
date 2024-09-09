@@ -1,5 +1,5 @@
 import {IngridientProps} from "@/entities/Ingridient/types";
-import {CategoryItem} from "@/features/CategoriesList/types";
+import {CategoryItem} from "@/widgets/CategoriesList/types";
 
 
 export type ProductConverterFunc = (productToConvert: any) => ProductCardProps;

@@ -17,37 +17,36 @@ export const MenuProductPage: FC = () => {
         setCurrentPrice(location.state.product.price[index]);
     }
 
-
-    //<p className="product-card__text price">Price: <br/>$ {location.state.product.price}</p>
-
     return (
         <>
             <div className="">
                 <div>
                     <GoBackButton/>
-                    <div className="card-body">
-                        <div className="product-images">
+                    <div className="">
+                        <div className="">
                             {location.state.product.images.map((image: string, index: number) => (
-                                <img className="product-image" key={index} src={image}
-                                     onClick={() => handleImageClick(image)}/>
+                                <img className="" key={index} src={image}
+                                     onClick={() => handleImageClick(image)} alt=""/>
                             ))}
                         </div>
-                        <div className="product-image-current">
-                            <img className="product-image current" src={currentImg} alt={location.state.product.name}/>
+                        <div className="">
+                            <img className="" src={currentImg} alt={location.state.product.name}/>
                         </div>
-                        <div className="product-info">
-                            <p className="product-card__text title">{location.state.product.name}</p>
-                            <p className="product-card__text description">{location.state.product.description}</p>
-                            <p className="product-card__text category">{location.state.product.category.name}</p>
+                        <div className="">
+                            <p className="">{location.state.product.name}</p>
+                            <p className="">{location.state.product.description}</p>
+                            <p className="">{location.state.product.category.name}</p>
                             <div>
-                                {location.state.product.price.map((element, index: number) => (
-                                    <li key={index} onClick={() => handleSizeClick(index)}>{element.name}</li>
-                                ))}
+                                <ul className="">
+                                    {location.state.product.price.map((element, index: number) => (
+                                        <li key={index} onClick={() => handleSizeClick(index)}>{element.name}</li>
+                                    ))}
+                                </ul>
                             </div>
                             <div>
                                 <p>{currentPrice.price}</p>
                             </div>
-                            <button className="product-card__add-btn">Add</button>
+                            <button className="">Add</button>
                         </div>
                     </div>
                 </div>

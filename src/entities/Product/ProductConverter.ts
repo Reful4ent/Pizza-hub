@@ -1,5 +1,5 @@
-import {categoryConverter} from "@/features/CategoriesList/CategoryConverter";
-import {ProductConverterFunc} from "@/entities/ProductCard/types";
+import {categoryConverter} from "@/widgets/CategoriesList/CategoryConverter";
+import {ProductConverterFunc} from "@/entities/Product/ProductCard/types";
 import {ingridientsConverter} from "@/entities/Ingridient/IngridientsConverter";
 
 export const productConverter: ProductConverterFunc = (productToConvert) => {
