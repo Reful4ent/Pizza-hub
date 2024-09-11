@@ -7,7 +7,7 @@ export const GoBackButton: FC = () => {
 
     return (
         <>
-            <button onClick={() => navigate(-1)}>Вернуться</button>
+            <button className="my-[10px] p-[10px] bg-amber-200 rounded-[20px] hover:bg-amber-400 hover:text-white" onClick={() => navigate(-1)}>Вернуться</button>
         </>
     )
 }

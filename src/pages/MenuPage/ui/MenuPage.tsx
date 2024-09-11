@@ -36,8 +36,8 @@ export const MenuPage: FC = () => {
     const fetchData = useCallback(async () => {
         const responseProducts = await getProducts();
         const responseCategories = await getCategories();
-        setList(responseProducts.map((element) => productConverter(element)));
-        setCategories(responseCategories.map((element) => categoryConverter(element)));
+        setList(responseProducts.map((element: any) => productConverter(element)));
+        setCategories(responseCategories.map((element: any) => categoryConverter(element)));
     },[])
 
     useEffect(() => {

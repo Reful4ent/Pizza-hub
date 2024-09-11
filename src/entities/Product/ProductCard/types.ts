@@ -1,4 +1,4 @@
-import {IngridientProps} from "@/entities/Ingridient/types";
+import {IngredientProps} from "@/entities/IngreidientCard/types";
 import {CategoryItem} from "@/widgets/CategoriesList/types";
 
 
@@ -15,7 +15,7 @@ export type ProductCardProps = {
     price: object,
     category: CategoryItem,
     images: string[];
-    ingredients: IngridientProps[] | null;
+    ingredients: IngredientProps[] | null;
 }
 
 
