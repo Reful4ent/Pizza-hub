@@ -13,5 +13,5 @@ export type IngredientProps = {
     name: string,
     price: number,
     description: string,
-    images: string[],
+    image: string,
 }

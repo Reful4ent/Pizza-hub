@@ -27,7 +27,7 @@ export const MenuPage: FC = () => {
     const handleInputSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const form = e.target;
-        const query = form.search.value.toLowerCase();
+        const query = form.elements.search.value.toLowerCase();
         setSearchParams({categoryId: String(categoryId), searchQuery: query})
     }
 

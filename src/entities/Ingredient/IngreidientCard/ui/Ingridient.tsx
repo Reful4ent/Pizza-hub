@@ -1,5 +1,5 @@
 import {memo, useEffect, useState} from "react";
-import {IIngredient, IngredientProps} from "@/entities/IngreidientCard/types";
+import {IIngredient, IngredientProps} from "@/entities/Ingredient/IngreidientCard/types";
 
 
 export const IngredientCard = memo<IIngredient>(({ingredientCard, onClick}) => {
@@ -8,13 +8,15 @@ export const IngredientCard = memo<IIngredient>(({ingredientCard, onClick}) => {
     useEffect(() => {
         if(ingredientCard) {
             setIngredient(ingredientCard);
+            console.log("\n")
+            console.log(ingredientCard);
         }
     }, [ingredientCard]);
 
     return (
         <>
             <div onClick={() => onClick?.(ingredient)}>
-                <img src={ingredient?.images[0]} alt={ingredient?.name}/>
+                <img src={ingredient?.image} alt={ingredient?.name}/>
                 <p>{ingredient?.name}</p>
                 <p>{ingredient?.price}</p>
             </div>

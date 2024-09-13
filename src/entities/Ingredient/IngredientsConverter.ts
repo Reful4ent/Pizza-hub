@@ -1,4 +1,4 @@
-import {IngredientsConverterFunc} from "@/entities/IngreidientCard/types";
+import {IngredientsConverterFunc} from "@/entities/Ingredient/IngreidientCard/types";
 
 
 export const ingredientsConverter: IngredientsConverterFunc = (ingredientsToConvert) => {
@@ -8,7 +8,7 @@ export const ingredientsConverter: IngredientsConverterFunc = (ingredientsToConv
             name: ingredient.attributes.name,
             description: ingredient.attributes.description,
             price: ingredient.attributes.price,
-            images: ingredient.attributes.images,
+            image: ingredient.attributes.image,
         }
     ));
 }

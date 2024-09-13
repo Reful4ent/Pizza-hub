@@ -3,6 +3,7 @@ import {FC, memo, useEffect, useState} from "react";
 
 import {Spinner} from "@/shared/ui/Spinner/ui/Spinner";
 import {Link, useNavigate} from "react-router-dom";
+import {Button} from "@/shared/ui/Button";
 
 
 export const ProductCard = memo<IProduct>(({productCard}) => {
@@ -41,9 +42,8 @@ export const ProductCard = memo<IProduct>(({productCard}) => {
                             <p className="font-openSans line-clamp-1 mb-[5px] font-medium text-[22px]">{product.name}</p>
                             <p className="font-openSans line-clamp-4 text-ellipsis overflow-hidden text-[#616773] mb-[5px] w-[100%] h-[50%]">{product.description}</p>
                             <p className="font-openSans mb-[5px] text-[18px] font-semibold">Цена: {Object.values(product.price)[0]['price']} ₽</p>
-                            <button className="font-openSans bg-amber-100 hover:bg-amber-500 rounded-lg h-[25%] font-semibold"
-                                    onClick={handleAddClick}>Добавить
-                            </button>
+                            <Button className="font-openSans bg-amber-100 hover:bg-amber-500 rounded-lg h-[25%] font-semibold"
+                                    onClick={handleAddClick}>Добавить</Button>
                         </div>
                     </div>
                 </>
