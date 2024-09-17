@@ -8,18 +8,20 @@ export const IngredientCard = memo<IIngredient>(({ingredientCard, onClick}) => {
     useEffect(() => {
         if(ingredientCard) {
             setIngredient(ingredientCard);
-            console.log("\n")
-            console.log(ingredientCard);
         }
     }, [ingredientCard]);
 
     return (
         <>
-            <div onClick={() => onClick?.(ingredient)}>
-                <img src={ingredient?.image} alt={ingredient?.name}/>
-                <p>{ingredient?.name}</p>
-                <p>{ingredient?.price}</p>
-            </div>
+            {
+                ingredient
+                &&
+                <div onClick={() => onClick?.(ingredient)}>
+                    <img src={ingredient?.image} alt={ingredient?.name}/>
+                    <p>{ingredient?.name}</p>
+                    <p>{ingredient?.price}</p>
+                </div>
+            }
         </>
     )
 })

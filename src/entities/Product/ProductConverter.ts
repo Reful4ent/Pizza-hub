@@ -11,5 +11,6 @@ export const productConverter: ProductConverterFunc = (productToConvert) => {
         images: productToConvert.attributes.images,
         ingredients: ingredientsConverter(productToConvert.attributes.ingredients.data),
         category: categoryConverter(productToConvert.attributes.category.data),
+        addIngredient: productToConvert.attributes.addIngredient,
     };
 }

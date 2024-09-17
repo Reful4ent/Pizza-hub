@@ -4,14 +4,19 @@ import {FC, memo, useEffect, useState} from "react";
 import {Spinner} from "@/shared/ui/Spinner/ui/Spinner";
 import {Link, useNavigate} from "react-router-dom";
 import {Button} from "@/shared/ui/Button";
+import {useShopCart} from "@/app/context/ShopCartProvider/context";
 
 
 export const ProductCard = memo<IProduct>(({productCard}) => {
     const navigate = useNavigate();
+    const shopCart = useShopCart();
     const [product, setProduct] = useState<ProductCardProps | null>(null);
 
     const handleAddClick = () => {
-        console.log(product)
+        if(product){
+            console.log(product.price);
+            shopCart?.addProductToCart(product, product.price[0]);
+        }
     }
 
     useEffect(() => {

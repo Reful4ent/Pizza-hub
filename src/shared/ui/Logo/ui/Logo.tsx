@@ -2,7 +2,7 @@ import {FC} from "react";
 
 
 import {urlRoute} from "@/shared/api/route";
-import {useConfig} from "@/app/context/context";
+import {useConfig} from "@/app/context/ConfigProvider/context";
 
 
 export const Logo: FC = () => {

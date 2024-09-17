@@ -1,5 +1,5 @@
 import { createContext, useContext} from "react";
-import {IConfigContextValue} from "@/app/context/types";
+import {IConfigContextValue} from "@/app/context/ConfigProvider/types";
 
 
 export const ConfigContext = createContext<IConfigContextValue | null>(null);

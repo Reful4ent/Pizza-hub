@@ -13,7 +13,7 @@ export const IngredientsList: FC<IIngredientsList> = ({ingredients, onClick}) =>
                     &&
                     ingredients
                         .map((element, index) => (
-                            <IngredientCard ingredientCard={element} key={index} onClick={onClick}/>
+                            <IngredientCard ingredientCard={element.ingredient} key={index} onClick={onClick}/>
                         ))
                 }
             </div>

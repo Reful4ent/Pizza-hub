@@ -1,7 +1,6 @@
-import {ProductCardProps} from "@/entities/Product/ProductCard/types";
 
 
-export type IngredientsConverterFunc = (ingridientsToConvert: any) => IngredientProps[];
+export type IngredientsConverterFunc = (ingredientsToConvert: any) => IngredientListItem[];
 
 export interface IIngredient {
     ingredientCard: IngredientProps | null ,
@@ -14,4 +13,9 @@ export type IngredientProps = {
     price: number,
     description: string,
     image: string,
+}
+
+export type IngredientListItem = {
+    ingredient: IngredientProps,
+    count: number,
 }

@@ -1,9 +1,8 @@
 import {IngredientProps} from "@/entities/Ingredient/IngreidientCard/types";
-import {IngredientListItem} from "@/pages/MenuProductPage/types";
-
+import {IngredientListItem} from "@/entities/Ingredient/IngreidientCard/types";
 
 export interface IIngredientsList {
-    ingredients: IngredientProps[] | null,
+    ingredients: IngredientListItem[] | null,
     onClick?: (ingredient: IngredientProps) => void,
 }
 

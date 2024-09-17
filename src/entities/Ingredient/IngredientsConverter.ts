@@ -2,13 +2,16 @@ import {IngredientsConverterFunc} from "@/entities/Ingredient/IngreidientCard/ty
 
 
 export const ingredientsConverter: IngredientsConverterFunc = (ingredientsToConvert) => {
-    return ingredientsToConvert?.map((ingredient: any) => (
+    return ingredientsToConvert?.map((element: any) => (
         {
-            id: ingredient.id,
-            name: ingredient.attributes.name,
-            description: ingredient.attributes.description,
-            price: ingredient.attributes.price,
-            image: ingredient.attributes.image,
+            ingredient: {
+                id: element.id,
+                name: element.attributes.name,
+                description: element.attributes.description,
+                price: element.attributes.price,
+                image: element.attributes.image,
+            },
+            count: 1,
         }
     ));
 }

@@ -1,4 +1,4 @@
-import {IngredientProps} from "@/entities/Ingredient/IngreidientCard/types";
+import {IngredientListItem, IngredientProps} from "@/entities/Ingredient/IngreidientCard/types";
 import {CategoryItem} from "@/widgets/CategoriesList/types";
 
 
@@ -10,7 +10,7 @@ export interface IProduct {
 
 export interface IFullProduct {
     productCard: ProductCardProps;
-    ingredients: IngredientProps[];
+    ingredients: IngredientListItem[];
 }
 
 export type PriceAttr = {
@@ -27,7 +27,8 @@ export type ProductCardProps = {
     price: PriceAttr[],
     category: CategoryItem,
     images: string[];
-    ingredients: IngredientProps[] | null;
+    ingredients: IngredientListItem[] | null;
+    addIngredient: boolean;
 }
 
 

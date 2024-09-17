@@ -1,6 +1,6 @@
 import {FC, PropsWithChildren, useCallback, useEffect, useState} from "react";
-import {ConfigContext} from "@/app/context/context";
-import {IContext} from "@/app/context/types";
+import {ConfigContext} from "@/app/context/ConfigProvider/context";
+import {IContext} from "@/app/context/ConfigProvider/types";
 import {getConfig} from "@/shared/api";
 
 
