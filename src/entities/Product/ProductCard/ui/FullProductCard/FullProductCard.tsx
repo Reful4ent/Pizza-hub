@@ -1,4 +1,4 @@
-import {FC, useEffect, useState} from "react";
+import {FC, useCallback, useEffect, useState} from "react";
 import {IFullProduct} from "@/entities/Product/ProductCard/types";
 import {AddedIngredientList, IngredientsList} from "@/widgets/IngredientsList";
 import {IngredientListItem} from "@/entities/Ingredient/IngreidientCard/types";
@@ -15,12 +15,21 @@ const IsArrayContains = (id: number, arr: IngredientListItem[]) => {
 }
 
 
+/*
+const handleIngredientClick = async (ingredient: IngredientProps | null) => {
+        await getProductPrice(ingredient, currentPrice);
+        if(ingredient && !IsArrayContains(ingredient.id,addedIngredients)) {
+            setAddedIngredients([...addedIngredients, {ingredient: ingredient,count: 1}])
+        }
+    }
+ */
+
 //ToDo: Сделать запрос на сервер для подсчета товара
 export const FullProductCard: FC<IFullProduct> = ({productCard, ingredients}) => {
 
     const [currentImg, setCurrentImg] = useState(productCard.images[0])
-    const [currentPrice, setCurrentPrice] = useState<PriceAttr>(productCard.price[0])
-    const [priceOfIngredients, setPriceOfIngredients] = useState(0);
+    const [currentSize, setCurrentSize] = useState<PriceAttr>(productCard.price[0])
+    const [currentPrice, setCurrentPrice] = useState(0);
     const [ingredientsList, setIngredientsList] = useState<IngredientListItem[]>([]);
     const [addedIngredients, setAddedIngredients] = useState<IngredientListItem[]>([]);
 
@@ -31,28 +40,32 @@ export const FullProductCard: FC<IFullProduct> = ({productCard, ingredients}) =>
         setCurrentImg(image);
     }
 
-    const getProductPrice = async (ingredient: IngredientProps | null) => {
-        const result = await axios.post(
-            urlRoute +
-            '/productCalculate',
-            {
-                product: productCard,
-                ingredient: ingredient,
-                addedIngredients: addedIngredients,
-                currentPrice: currentPrice
-            },
-            {
-                headers: {
-                    'Authorization': `Bearer ` + token,
+    const getProductPrice = useCallback(async () => {
+        try {
+            const result = await axios.post(
+                urlRoute +
+                '/productCalculate',
+                {
+                    productId: productCard.id,
+                    addedIngredients: addedIngredients,
+                    currentSize: currentSize
+                },
+                {
+                    headers: {
+                        'Authorization': `Bearer ` + token,
+                    }
                 }
-            }
-        )
-    }
+            )
+            setCurrentPrice(result.data);
+        } catch (error) {
+            console.error(error);
+        }
+    },[addedIngredients,currentSize,productCard.id])
 
 
-    const handleSizeClick = (index: number) => {
-        if(currentPrice){
-            setCurrentPrice({
+    const handleSizeClick = async (index: number) => {
+        if(currentSize){
+            setCurrentSize({
                 id:productCard.price[index].id,
                 price: productCard.price[index].price,
                 name: productCard.price[index].name,
@@ -77,51 +90,45 @@ export const FullProductCard: FC<IFullProduct> = ({productCard, ingredients}) =>
             }
         })
 
-        shopCart?.addProductToCart(tempProduct, currentPrice);
+        shopCart?.addProductToCart(tempProduct, currentSize);
     }
 
 
-    const handleIngredientClick = async (ingredient: IngredientProps | null) => {
-        await getProductPrice(ingredient);
+    const handleIngredientClick = useCallback(async (ingredient: IngredientProps | null) => {
         if(ingredient && !IsArrayContains(ingredient.id,addedIngredients)) {
             setAddedIngredients([...addedIngredients, {ingredient: ingredient,count: 1}])
-            setPriceOfIngredients(prevPrice => prevPrice + ingredient.price);
         }
-    }
+    },[addedIngredients])
 
 
-    const handleCountEditClick = (ingredient: IngredientProps, plus: boolean) => {
+    const handleCountEditClick = async (ingredient: IngredientProps, plus: boolean) => {
         if(plus) {
             setAddedIngredients(addedIngredients.map((element) => (
                 element.ingredient.id === ingredient.id ? {...element, count: element.count + 1} : element)
             ));
-            setPriceOfIngredients(prevPrice => prevPrice + ingredient.price);
         } else {
-            setAddedIngredients(
-                addedIngredients
-                    .map((element) => (
-                        element.ingredient.id === ingredient.id ? {...element, count: element.count - 1} : element))
-                    .filter((element) => (
-                        element.count > 0 && element
-                    ))
-            );
-            setPriceOfIngredients(prevPrice => prevPrice - ingredient.price);
+            setAddedIngredients(addedIngredients
+                .map((element) => (
+                    element.ingredient.id === ingredient.id ? {...element, count: element.count - 1} : element))
+                .filter((element) => (
+                    element.count > 0 && element
+                )));
         }
     }
 
     const handleIngredientCloseClick = (ingredientItem: IngredientListItem) => {
-        setPriceOfIngredients(prevPrice => prevPrice - ingredientItem.count * ingredientItem.ingredient.price)
-        setAddedIngredients(
-            addedIngredients
-                .filter((element) => (
-                    element != ingredientItem
-                ))
-        );
+        setAddedIngredients(addedIngredients
+            .filter((element) => (
+                element != ingredientItem
+            )));
     }
 
-    useEffect(() => {
-        setIngredientsList(ingredients)
-    }, [ingredients]);
+    useEffect( () => {
+        getProductPrice().catch(console.error);
+        if(ingredientsList.length === 0) {
+            setIngredientsList(ingredients);
+        }
+    }, [getProductPrice,ingredientsList.length,ingredients]);
 
     return (
         <div className="flex flex-row justify-center items-center">
@@ -150,7 +157,7 @@ export const FullProductCard: FC<IFullProduct> = ({productCard, ingredients}) =>
                 </div>
 
                 <div>
-                    <p className="my-[2%]">Цена: {currentPrice.price}</p>
+                    <p className="my-[2%]">Цена: {currentPrice}</p>
                 </div>
 
 
@@ -169,7 +176,7 @@ export const FullProductCard: FC<IFullProduct> = ({productCard, ingredients}) =>
                     <div>
                         <div>
                             <p>Добавки:</p>
-                            <IngredientsList ingredients={ingredientsList} onClick={ handleIngredientClick}/>
+                            <IngredientsList ingredients={ingredientsList} onClick={handleIngredientClick}/>
                         </div>
 
                         <div>
