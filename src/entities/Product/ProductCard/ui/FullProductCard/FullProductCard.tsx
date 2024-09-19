@@ -14,17 +14,6 @@ const IsArrayContains = (id: number, arr: IngredientListItem[]) => {
     return arr.some((element) => element.ingredient.id === id);
 }
 
-
-/*
-const handleIngredientClick = async (ingredient: IngredientProps | null) => {
-        await getProductPrice(ingredient, currentPrice);
-        if(ingredient && !IsArrayContains(ingredient.id,addedIngredients)) {
-            setAddedIngredients([...addedIngredients, {ingredient: ingredient,count: 1}])
-        }
-    }
- */
-
-//ToDo: Сделать запрос на сервер для подсчета товара
 export const FullProductCard: FC<IFullProduct> = ({productCard, ingredients}) => {
 
     const [currentImg, setCurrentImg] = useState(productCard.images[0])
@@ -74,23 +63,7 @@ export const FullProductCard: FC<IFullProduct> = ({productCard, ingredients}) =>
     }
 
     const handleAddClick = () => {
-        const tempProduct = structuredClone(productCard);
-
-        addedIngredients.forEach((element) => {
-            if(tempProduct.ingredients?.some(item => item.ingredient.id === element.ingredient.id)) {
-
-                const ingredientKey = tempProduct.ingredients?.findIndex(item => item.ingredient.id === element.ingredient.id);
-
-                for (let i = 0; i< element.count; i++ ) {
-                    tempProduct.ingredients[ingredientKey].count++;
-                }
-
-            } else {
-                tempProduct.ingredients?.push(element);
-            }
-        })
-
-        shopCart?.addProductToCart(tempProduct, currentSize);
+        shopCart?.addProductToCart(productCard, currentSize, addedIngredients);
     }
 
 

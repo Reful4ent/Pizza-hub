@@ -10,12 +10,12 @@ export const ShopCart: FC = () => {
 
     return (
         <>
-            <Button className="bg-red-400 p-[10px] col-start-3" onClick={() => {setIsActive(!isActive); console.log(isActive)}} children={shopCart?.shopCart.length}></Button>
+            <Button className="bg-red-400 p-[10px] col-start-3" onClick={() => {setIsActive(!isActive); console.log(shopCart?.shopCart)}} children={shopCart?.shopCart.length}></Button>
             {isActive &&
             <div className="absolute z-10 bg-red-400">
                 {
-                    shopCart?.shopCart.map(element => (
-                        <li>{element.product.name}</li>
+                    shopCart?.shopCart.map((element,index) => (
+                        <li key={index}>{element.product.name}</li>
                     ))
                 }
             </div>

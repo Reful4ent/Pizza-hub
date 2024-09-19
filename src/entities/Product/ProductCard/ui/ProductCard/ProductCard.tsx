@@ -15,7 +15,7 @@ export const ProductCard = memo<IProduct>(({productCard}) => {
     const handleAddClick = () => {
         if(product){
             console.log(product.price);
-            shopCart?.addProductToCart(product, product.price[0]);
+            shopCart?.addProductToCart(product, product.price[0],[]);
         }
     }
 
