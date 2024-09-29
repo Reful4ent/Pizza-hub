@@ -25,9 +25,9 @@ export const FullProductCard: FC<IFullProduct> = ({productCard, ingredients}) =>
 
     const shopCart = useShopCart();
 
-    const handleImageClick = (image: string) => {
+    const handleImageClick = useCallback((image: string) => {
         setCurrentImg(image);
-    }
+    },[])
 
     const getProductPrice = useCallback(async () => {
         try {
@@ -52,7 +52,7 @@ export const FullProductCard: FC<IFullProduct> = ({productCard, ingredients}) =>
     },[addedIngredients,currentSize,productCard.id])
 
 
-    const handleSizeClick = async (index: number) => {
+    const handleSizeClick = useCallback(async (index: number) => {
         if(currentSize){
             setCurrentSize({
                 id:productCard.price[index].id,
@@ -60,11 +60,12 @@ export const FullProductCard: FC<IFullProduct> = ({productCard, ingredients}) =>
                 name: productCard.price[index].name,
             });
         }
-    }
+    },[currentSize, productCard.price])
 
-    const handleAddClick = () => {
+
+    const handleAddClick = useCallback(() => {
         shopCart?.addProductToCart(productCard, currentSize, addedIngredients);
-    }
+    },[addedIngredients, currentSize, productCard, shopCart])
 
 
     const handleIngredientClick = useCallback(async (ingredient: IngredientProps | null) => {
@@ -74,27 +75,29 @@ export const FullProductCard: FC<IFullProduct> = ({productCard, ingredients}) =>
     },[addedIngredients])
 
 
-    const handleCountEditClick = async (ingredient: IngredientProps, plus: boolean) => {
-        if(plus) {
+
+    const handleCountPlusClick = useCallback((ingredient: IngredientProps) => {
             setAddedIngredients(addedIngredients.map((element) => (
                 element.ingredient.id === ingredient.id ? {...element, count: element.count + 1} : element)
             ));
-        } else {
-            setAddedIngredients(addedIngredients
-                .map((element) => (
-                    element.ingredient.id === ingredient.id ? {...element, count: element.count - 1} : element))
-                .filter((element) => (
-                    element.count > 0 && element
-                )));
-        }
-    }
+    },[addedIngredients]);
 
-    const handleIngredientCloseClick = (ingredientItem: IngredientListItem) => {
+    const handleCountMinusClick = useCallback((ingredient: IngredientProps) => {
+        setAddedIngredients(addedIngredients
+            .map((element) => (
+                element.ingredient.id === ingredient.id ? {...element, count: element.count - 1} : element))
+            .filter((element) => (
+                element.count > 0 && element
+            )));
+    },[addedIngredients])
+
+
+    const handleIngredientDeleteClick = useCallback((ingredientItem: IngredientListItem) => {
         setAddedIngredients(addedIngredients
             .filter((element) => (
                 element != ingredientItem
             )));
-    }
+    },[addedIngredients]);
 
     useEffect( () => {
         getProductPrice().catch(console.error);
@@ -154,8 +157,10 @@ export const FullProductCard: FC<IFullProduct> = ({productCard, ingredients}) =>
 
                         <div>
                             <p>Список добавленных добавок:</p>
-                            <AddedIngredientList addedIngredients={addedIngredients} onClick={handleCountEditClick}
-                                                 onCloseClick={handleIngredientCloseClick}/>
+                            <AddedIngredientList addedIngredients={addedIngredients}
+                                                 onMinusClick={handleCountMinusClick}
+                                                 onPlusClick={handleCountPlusClick}
+                                                 onDeleteClick={handleIngredientDeleteClick}/>
                         </div>
                     </div>
                 }

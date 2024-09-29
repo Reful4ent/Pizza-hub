@@ -1,8 +1,9 @@
 import {FC} from "react";
 import {IAddedIngredientsList} from "@/widgets/IngredientsList/types";
+import {Button} from "@/shared/ui/Button";
 
 
-export const AddedIngredientList: FC<IAddedIngredientsList> = ({addedIngredients, onClick, onCloseClick}) => {
+export const AddedIngredientList: FC<IAddedIngredientsList> = ({addedIngredients, onMinusClick, onPlusClick, onDeleteClick}) => {
 
     return (
         <>
@@ -12,16 +13,18 @@ export const AddedIngredientList: FC<IAddedIngredientsList> = ({addedIngredients
                         <div className="flex flex-row bg-purple-500" key={index}>
                             <p>{element.ingredient.name}</p>
                             <div className="flex flex-row self-end">
-                                <button
+                                <Button
                                     className="mx-[10px]"
-                                    onClick={() => onClick(element.ingredient, false)}>-
-                                </button>
+                                    onClick={() => onMinusClick(element.ingredient)}
+                                    children={"-"}
+                                />
                                 <p className="mx-[10px]">{element.count}</p>
-                                <button
+                                <Button
                                     className="mx-[10px]"
-                                    onClick={() => onClick(element.ingredient, true)}>+
-                                </button>
-                                <button className="mx-[10px]" onClick={() => onCloseClick(element)}>X</button>
+                                    onClick={() => onPlusClick(element.ingredient)}
+                                    children={"+"}
+                                />
+                                <Button className="mx-[10px]" onClick={() => onDeleteClick(element)} children={"X"}/>
                             </div>
                         </div>
                     ))

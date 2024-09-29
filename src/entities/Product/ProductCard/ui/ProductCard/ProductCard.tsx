@@ -1,5 +1,5 @@
 import {IProduct, ProductCardProps} from "@/entities/Product/ProductCard/types";
-import {FC, memo, useEffect, useState} from "react";
+import { memo, useCallback, useEffect, useState} from "react";
 
 import {Spinner} from "@/shared/ui/Spinner/ui/Spinner";
 import {Link, useNavigate} from "react-router-dom";
@@ -12,12 +12,11 @@ export const ProductCard = memo<IProduct>(({productCard}) => {
     const shopCart = useShopCart();
     const [product, setProduct] = useState<ProductCardProps | null>(null);
 
-    const handleAddClick = () => {
+    const handleAddClick = useCallback( () => {
         if(product){
-            console.log(product.price);
             shopCart?.addProductToCart(product, product.price[0],[]);
         }
-    }
+    },[product,shopCart])
 
     useEffect(() => {
         if (productCard){

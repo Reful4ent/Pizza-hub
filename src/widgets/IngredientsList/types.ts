@@ -9,6 +9,7 @@ export interface IIngredientsList {
 
 export interface IAddedIngredientsList {
     addedIngredients: IngredientListItem[];
-    onClick: (ingredient: IngredientProps, plus: boolean) => void;
-    onCloseClick: (ingredient: IngredientListItem) => void;
+    onPlusClick: (ingredient: IngredientProps) => void;
+    onMinusClick: (ingredient: IngredientProps) => void;
+    onDeleteClick: (ingredient: IngredientListItem) => void;
 }

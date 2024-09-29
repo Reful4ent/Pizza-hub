@@ -18,18 +18,18 @@ export const MenuPage: FC = () => {
     const categoryIdQuery = searchParams.get("categoryId") || '';
     const searchQuery = searchParams.get("searchQuery") || '';
 
-    const handleCategoryClick= (id: number) => {
+    const handleCategoryClick = useCallback((id: number) => {
         setCategoryId(id);
         setSearchParams({categoryId: String(id)})
-    }
+    },[setSearchParams])
 
 
-    const handleInputSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleInputSubmit = useCallback((e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const form = e.target;
         const query = form.elements.search.value.toLowerCase();
         setSearchParams({categoryId: String(categoryId), searchQuery: query})
-    }
+    },[categoryId,setSearchParams])
 
 
 
@@ -44,12 +44,12 @@ export const MenuPage: FC = () => {
         fetchData()
     }, [fetchData]);
 
-    ///configItems.icon.data.attributes.url
+
     return (
         <>
            <div className="grid grid-cols-5">
                <SearchInput onSubmit={handleInputSubmit} />
-               <ProductList searchFilter={searchQuery} categoryId={Number(categoryIdQuery)} list={list}/>
+               <ProductList searchFilter={searchQuery} categoryId={Number(categoryIdQuery)} productList={list}/>
                <CategoriesList categories={categories} onClick={handleCategoryClick}/>
            </div>
         </>
