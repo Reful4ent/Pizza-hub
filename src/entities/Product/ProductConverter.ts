@@ -1,6 +1,6 @@
-import {categoryConverter} from "@/widgets/CategoriesList/CategoryConverter";
+import {categoryConverter, filteredCategoryConverter} from "@/widgets/CategoriesList/CategoryConverter";
 import {ProductConverterFunc} from "@/entities/Product/ProductCard/types";
-import {ingredientsConverter} from "@/entities/Ingredient/IngredientsConverter";
+import {filteredIngredientsConverter, ingredientsConverter} from "@/entities/Ingredient/IngredientsConverter";
 
 export const productConverter: ProductConverterFunc = (productToConvert) => {
     return {
@@ -13,4 +13,21 @@ export const productConverter: ProductConverterFunc = (productToConvert) => {
         category: categoryConverter(productToConvert.attributes.category.data),
         addIngredient: productToConvert.attributes.addIngredient,
     };
+}
+
+export const filteredProductConverter: ProductConverterFunc = (productToConvert) => {
+    return {
+        id: productToConvert.id,
+        name: productToConvert.name,
+        description: productToConvert.description,
+        price: productToConvert.price,
+        images: imagesConverter(productToConvert.images),
+        ingredients: filteredIngredientsConverter(productToConvert.ingredients),
+        category: filteredCategoryConverter(productToConvert.category),
+        addIngredient: productToConvert.addIngredient,
+    }
+}
+
+const imagesConverter = (imagesUrl: string) => {
+    return imagesUrl.split(';');
 }

@@ -7,3 +7,10 @@ export const categoryConverter: CategoryConverterFunc = (categoryToConvert) => {
         name: categoryToConvert?.attributes?.name,
     }
 }
+
+export const filteredCategoryConverter: CategoryConverterFunc = (categoryToConvert) => {
+    return {
+        id: categoryToConvert.id,
+        name: categoryToConvert?.name,
+    }
+}

@@ -15,3 +15,18 @@ export const ingredientsConverter: IngredientsConverterFunc = (ingredientsToConv
         }
     ));
 }
+
+export const filteredIngredientsConverter: IngredientsConverterFunc = (ingredientsToConvert) => {
+    return ingredientsToConvert?.map((element: any) => (
+        {
+            ingredient: {
+                id: element.id,
+                name: element.name,
+                description: element.description,
+                price: element.price,
+                image: element.image,
+            },
+            count: 1,
+        }
+    ));
+}

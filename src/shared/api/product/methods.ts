@@ -1,30 +1,35 @@
 import axios from "axios";
 import {urlRoute} from "@/shared/api/route";
 import {token} from "@/shared/api/token";
+import {PriceAttr} from "@/entities/Product/ProductCard/types";
+import {IngredientListItem} from "@/entities/Ingredient/IngreidientCard/types";
 
 
-export const getProducts = async () => {
+/*export const getProducts = async (page: number) => {
     try {
-        const response = await axios.get(
+        const products = await axios.get(
             urlRoute +
-            '/products?populate=*',
+            `/products?populate=*&sort=category.id:asc&pagination[page]=${page}&pagination[pageSize]=6`,
             {
                 headers: {
                     'Authorization': `Bearer ` + token,
                 }
             }
         )
-
-        return response.data.data;
+        console.log(products);
+        return {
+            products: products.data.data,
+            totalPages: products.data.meta.pagination.pageCount
+        }
     } catch (error) {
         console.error(error);
         return null;
     }
-}
+}*/
 
 export const getCategories = async () => {
     try {
-        const response = await axios.get(
+        const categories = await axios.get(
             urlRoute +
             '/categories',
             {
@@ -33,7 +38,7 @@ export const getCategories = async () => {
                 }
             }
         )
-        return response.data.data;
+        return categories.data.data;
     } catch (error) {
         console.error(error);
         return null;
@@ -41,9 +46,9 @@ export const getCategories = async () => {
 }
 
 
-export const getIngridients = async () => {
+export const getIngredients = async () => {
     try {
-        const response = await axios.get(
+        const ingredients = await axios.get(
             urlRoute +
             '/ingredients?populate=*',
             {
@@ -52,9 +57,56 @@ export const getIngridients = async () => {
                 }
             }
         )
-        return response.data.data;
+        return ingredients.data.data;
     } catch (error){
         console.error(error);
         return null;
+    }
+}
+
+export const getFilteredProducts = async (categoryId: number, searchQuery: string, pageNumber: string) => {
+    try {
+        const filteredProducts = await axios.post(
+            urlRoute +
+            '/getFilteredProductList',
+            {
+                categoryId: categoryId,
+                searchQuery: searchQuery,
+                pageNumber: pageNumber
+            },
+            {
+                headers: {
+                    'Authorization': `Bearer ` + token,
+                }
+            }
+        )
+        console.log(filteredProducts.data);
+        return filteredProducts.data
+    } catch (error) {
+        console.error(error);
+        return null;
+    }
+}
+
+export const getProductPrice = async (productId: number, currentSize: PriceAttr, addedIngredients: IngredientListItem[]) => {
+    try {
+        const result = await axios.post(
+            urlRoute +
+            '/productCalculate',
+            {
+                productId: productId,
+                addedIngredients: addedIngredients,
+                currentSize: currentSize
+            },
+            {
+                headers: {
+                    'Authorization': `Bearer ` + token,
+                }
+            }
+        )
+        console.log(result.data)
+        return result.data;
+    } catch (error) {
+        console.error(error);
     }
 }

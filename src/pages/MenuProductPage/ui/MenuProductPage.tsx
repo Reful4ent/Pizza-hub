@@ -1,8 +1,8 @@
 import {FC, useCallback, useEffect, useState} from "react";
 import {useLocation} from "react-router-dom";
 import {GoBackButton} from "@/features/GoBackButton";
-import {IngredientListItem, IngredientProps} from "@/entities/Ingredient/IngreidientCard/types";
-import {getIngridients} from "@/shared/api";
+import {IngredientListItem} from "@/entities/Ingredient/IngreidientCard/types";
+import {getIngredients} from "@/shared/api";
 import {ingredientsConverter} from "@/entities/Ingredient/IngredientsConverter";
 import {FullProductCard} from "@/entities/Product/ProductCard";
 
@@ -16,7 +16,7 @@ export const MenuProductPage: FC = () => {
 
 
     const fetchData = useCallback(async () => {
-        const response = await getIngridients();
+        const response = await getIngredients();
         setIngredients(ingredientsConverter(response));
     },[])
 

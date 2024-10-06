@@ -6,9 +6,7 @@ import {PriceAttr} from "@/entities/Product/ProductCard/types";
 import {IngredientProps} from "@/entities/Ingredient/IngreidientCard/types";
 import {Button} from "@/shared/ui/Button";
 import {useShopCart} from "@/app/context/ShopCartProvider/context";
-import axios from "axios";
-import {urlRoute} from "@/shared/api/route";
-import {token} from "@/shared/api/token";
+import {getProductPrice} from "@/shared/api";
 
 const IsArrayContains = (id: number, arr: IngredientListItem[]) => {
     return arr.some((element) => element.ingredient.id === id);
@@ -29,26 +27,9 @@ export const FullProductCard: FC<IFullProduct> = ({productCard, ingredients}) =>
         setCurrentImg(image);
     },[])
 
-    const getProductPrice = useCallback(async () => {
-        try {
-            const result = await axios.post(
-                urlRoute +
-                '/productCalculate',
-                {
-                    productId: productCard.id,
-                    addedIngredients: addedIngredients,
-                    currentSize: currentSize
-                },
-                {
-                    headers: {
-                        'Authorization': `Bearer ` + token,
-                    }
-                }
-            )
-            setCurrentPrice(result.data);
-        } catch (error) {
-            console.error(error);
-        }
+    const setProductPrice = useCallback(async () => {
+        const price = await getProductPrice(productCard.id,currentSize,addedIngredients);
+        setCurrentPrice(price);
     },[addedIngredients,currentSize,productCard.id])
 
 
@@ -100,11 +81,11 @@ export const FullProductCard: FC<IFullProduct> = ({productCard, ingredients}) =>
     },[addedIngredients]);
 
     useEffect( () => {
-        getProductPrice().catch(console.error);
+        setProductPrice().catch(console.error);
         if(ingredientsList.length === 0) {
             setIngredientsList(ingredients);
         }
-    }, [getProductPrice,ingredientsList.length,ingredients]);
+    }, [setProductPrice,ingredientsList.length,ingredients]);
 
     return (
         <div className="flex flex-row justify-center items-center">
