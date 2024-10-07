@@ -5,10 +5,9 @@ import {
     ProductListItem,
     ProductSmallListItem,
 } from "@/app/context/ShopCartProvider/types";
-import axios from "axios";
-import {urlRoute} from "@/shared/api/route";
-import {token} from "@/shared/api/token";
 import {IngredientListItem} from "@/entities/Ingredient/IngreidientCard/types";
+import {getCartPriceCalculate, setProductFromCartPriceCalculate} from "@/shared/api/shopCart/methods";
+
 
 export const ShopCartProvider: FC<PropsWithChildren> = ({children}) => {
 
@@ -16,44 +15,12 @@ export const ShopCartProvider: FC<PropsWithChildren> = ({children}) => {
     const [shopCartPrice, setShopCartPrice] = useState<number>(0);
 
     const setProductFromCartPrice = useCallback(async (product: ProductListItem) => {
-        try {
-            const result = await axios.post(
-                urlRoute +
-                '/productFromCartCalculate',{
-                    productId: product.product.id,
-                    addedIngredients: product.addedIngredients,
-                    currentSize: product.currentSize,
-                    count: product.count
-                },
-                {
-                    headers: {
-                        'Authorization': `Bearer ` + token,
-                    }
-                }
-            )
-            product.totalPrice = result.data;
-        } catch (error) {
-            console.log(error);
-        }
+        product.totalPrice = await setProductFromCartPriceCalculate(product);
     },[])
 
     const getCartPrice = useCallback(async () => {
-        try {
-            const result = await axios.post(
-                urlRoute +
-                '/cartCalculate', {
-                    shopCart
-                },
-                {
-                    headers: {
-                        'Authorization': `Bearer ` + token,
-                    }
-                }
-            )
-            setShopCartPrice(result.data);
-        } catch (error) {
-            console.log(error);
-        }
+        const price = await getCartPriceCalculate(shopCart);
+        setShopCartPrice(price);
     }, [shopCart])
 
 
@@ -66,34 +33,39 @@ export const ShopCartProvider: FC<PropsWithChildren> = ({children}) => {
                 addedIngredients: addedIngredients,
             }, shopCart)) {
 
-            setShopCart(shopCart.map(element => {
+            setShopCart(
+                shopCart.map(
+                    element =>
+                    {
+                        if (element.product.id === product.id
+                            && element.currentSize.id === currentSize.id
+                            && element.addedIngredients?.length === addedIngredients?.length) {
 
-                if (element.product.id === product.id
-                    && element.currentSize.id === currentSize.id
-                    && element.addedIngredients?.length === addedIngredients?.length) {
+                            for (let j = 0; j < element.addedIngredients.length; j++) {
+                                if (element.addedIngredients[j].ingredient.id !== addedIngredients[j].ingredient.id
+                                    || element.addedIngredients[j].count !== addedIngredients[j].count) {
+                                    return element;
+                                }
+                            }
 
-                    for (let j = 0; j < element.addedIngredients.length; j++) {
-                        if (element.addedIngredients[j].ingredient.id !== addedIngredients[j].ingredient.id
-                            || element.addedIngredients[j].count !== addedIngredients[j].count) {
+                            element.count++;
+                            setProductFromCartPrice(element);
+                            return element;
+
+                        } else {
                             return element;
                         }
                     }
-
-                    element.count++;
-                    setProductFromCartPrice(element);
-                    return element;
-
-                } else return element;
-            }))
+            ))
         } else {
             const tempProduct = {
-                product: product,
-                currentSize: currentSize,
-                addedIngredients: addedIngredients,
-                count: 1,
-                totalPrice: 0,
+                    product: product,
+                    currentSize: currentSize,
+                    addedIngredients: addedIngredients,
+                    count: 1,
+                    totalPrice: 0,
             }
-            setProductFromCartPrice(tempProduct);
+            await setProductFromCartPrice(tempProduct);
             setShopCart([...shopCart, tempProduct]);
         }
     },[setProductFromCartPrice,shopCart])

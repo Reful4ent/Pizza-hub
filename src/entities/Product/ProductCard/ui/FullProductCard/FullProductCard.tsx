@@ -58,9 +58,11 @@ export const FullProductCard: FC<IFullProduct> = ({productCard, ingredients}) =>
 
 
     const handleCountPlusClick = useCallback((ingredient: IngredientProps) => {
-            setAddedIngredients(addedIngredients.map((element) => (
-                element.ingredient.id === ingredient.id ? {...element, count: element.count + 1} : element)
-            ));
+            setAddedIngredients(addedIngredients
+                .map((element) => (
+                    element.ingredient.id === ingredient.id ? {...element, count: element.count + 1} : element)
+                )
+            );
     },[addedIngredients]);
 
     const handleCountMinusClick = useCallback((ingredient: IngredientProps) => {
