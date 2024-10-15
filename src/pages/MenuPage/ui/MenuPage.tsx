@@ -1,6 +1,6 @@
 import {FC, useCallback, useEffect, useState} from "react";
 import {getCategories, getFilteredProducts/*getProducts*/} from "@/shared/api/product/methods";
-import {filteredProductConverter, productConverter} from "@/entities/Product/ProductConverter";
+import {filteredProductConverter} from "@/entities/Product/ProductConverter";
 import {ProductList} from "@/widgets/ProductList";
 import {CategoriesList} from "@/widgets/CategoriesList";
 import {categoryConverter} from "@/widgets/CategoriesList/CategoryConverter";
