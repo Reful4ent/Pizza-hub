@@ -8,11 +8,14 @@ export const CategoryEdit = () => {
   const { formProps, saveButtonProps } = useForm<ICategory>();
 
   return (
-    <Edit saveButtonProps={saveButtonProps}>
+    <Edit
+        saveButtonProps={saveButtonProps}
+        title="Изменить категорию"
+    >
       <Form {...formProps} layout="vertical">
         <Form.Item
-          label="Title"
-          name="title"
+          label="Название"
+          name="name"
           rules={[
             {
               required: true,

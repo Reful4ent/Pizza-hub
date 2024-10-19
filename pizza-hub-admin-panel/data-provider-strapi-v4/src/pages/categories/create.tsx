@@ -1,6 +1,6 @@
 import { Create, useForm } from "@refinedev/antd";
 
-import { Form, Input } from "antd";
+import { Form, Input, Radio } from "antd";
 
 import type { ICategory } from "../../interfaces";
 
@@ -8,11 +8,14 @@ export const CategoryCreate = () => {
   const { formProps, saveButtonProps } = useForm<ICategory>();
 
   return (
-    <Create saveButtonProps={saveButtonProps}>
+    <Create
+        saveButtonProps={saveButtonProps}
+        title="Создать категорию"
+    >
       <Form {...formProps} layout="vertical">
         <Form.Item
-          label="Title"
-          name="title"
+          label="Название"
+          name="name"
           rules={[
             {
               required: true,

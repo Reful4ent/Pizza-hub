@@ -28,16 +28,16 @@
 
 </div>
 
-## Refine Strapi Auth/Data Provider Example
+## Refine Strapi V4 Auth/Data Provider Example
 
 ## Try this example on your local
 
 ```bash
-npm create refine-app@latest -- --example data-provider-strapi
+npm create refine-app@latest -- --example data-provider-strapi-v4
 ```
 
 ## Try this example on CodeSandbox
 
 <br/>
 
-[![Open data-provider-strapi example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/master/examples/data-provider-strapi?view=preview&theme=dark&codemirror=1)
+[![Open data-provider-strapi-v4 example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/master/examples/data-provider-strapi-v4?view=preview&theme=dark&codemirror=1)

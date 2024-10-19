@@ -1,6 +1,6 @@
 {
-  "short_name": "refine strapi example app",
-  "name": "refine strapi example app",
+  "short_name": "refine strapi-v4 example app",
+  "name": "refine strapi-v4 example app",
   "icons": [
     {
       "src": "favicon.ico",
