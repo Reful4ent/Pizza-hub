@@ -28,6 +28,10 @@ export type PriceAttr = {
     name: string,
 }
 
+export type ImageAttr = {
+    id: number,
+    URL: string
+}
 
 export type ProductCardProps = {
     id: number;
