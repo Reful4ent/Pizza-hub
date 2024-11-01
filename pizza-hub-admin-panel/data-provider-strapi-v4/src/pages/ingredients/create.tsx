@@ -18,6 +18,7 @@ export const IngredientCreate = () => {
                     rules={[
                         {
                             required: true,
+                            message: "Введите название!"
                         },
                     ]}
                 >
@@ -35,6 +36,7 @@ export const IngredientCreate = () => {
                     rules={[
                         {
                             required: true,
+                            message: "Введите цену!"
                         },
                     ]}
                 >
@@ -46,6 +48,7 @@ export const IngredientCreate = () => {
                     rules={[
                         {
                             required: true,
+                            message: "Введите ссылку на изображение!"
                         },
                     ]}
                 >

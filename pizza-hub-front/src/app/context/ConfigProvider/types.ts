@@ -3,6 +3,12 @@ export interface IContext {
     headerContext : {
         name: string;
         iconUrl: string | null;
+    },
+    standardProductCardContext: {
+        productStandardButtonType: "link" | "text" | "default" | "primary" | "dashed" | undefined,
+        colorStandardProductButton: string,
+        colorHoverStandardProductButton: string,
+        colorBoxShadowStandardProductButton: string,
     }
 }
 

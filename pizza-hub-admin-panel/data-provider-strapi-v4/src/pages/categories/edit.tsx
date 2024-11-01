@@ -19,6 +19,7 @@ export const CategoryEdit = () => {
           rules={[
             {
               required: true,
+              message: "Введите название!"
             },
           ]}
         >

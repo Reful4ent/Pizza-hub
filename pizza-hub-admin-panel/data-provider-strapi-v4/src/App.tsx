@@ -40,6 +40,9 @@ import {
   ProductCreate, ProductEdit,
   ProductList
 } from "./pages/products";
+import {ConfigEdit} from "./pages/config/edit";
+import './index.css'
+
 
 const App: React.FC = () => {
   const axiosInstance = axios.create();
@@ -163,7 +166,10 @@ const App: React.FC = () => {
                 list: "/products",
                 create: "/products/create",
                 edit: "/products/edit/:id",
-
+              },
+              {
+                name: "config",
+                list: '/config',
               }
             ]}
             notificationProvider={useNotificationProvider}
@@ -208,6 +214,9 @@ const App: React.FC = () => {
                   <Route path="edit/:id" element={<ProductEdit/>}/>
                 </Route>
 
+                <Route path="/config">
+                  <Route index element={<ConfigEdit/>}/>
+                </Route>
               </Route>
 
               <Route

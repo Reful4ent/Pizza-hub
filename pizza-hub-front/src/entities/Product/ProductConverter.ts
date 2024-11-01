@@ -16,7 +16,6 @@ export const productConverter: ProductConverterFunc = (productToConvert) => {
 }
 
 export const filteredProductConverter: ProductConverterFunc = (productToConvert) => {
-    console.log(productToConvert);
     return {
         id: productToConvert.id,
         name: productToConvert.name,

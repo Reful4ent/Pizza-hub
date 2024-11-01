@@ -22,6 +22,20 @@ export interface IProduct {
   addIngredient: boolean;
 }
 
+
+export interface IConfig {
+  name: string;
+  iconUrl: string;
+  productButtonType: IButtonType;
+  colorStandardProductButton: string;
+  colorHoverStandardProductButton: string;
+}
+
+export interface IButtonType {
+  id: number;
+  type: string;
+}
+
 export type priceType = {
   id: number;
   name: string;

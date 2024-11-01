@@ -17,6 +17,7 @@ export const IngredientEdit = () => {
                     rules={[
                         {
                             required: true,
+                            message: "Введите название!"
                         }
                     ]}
                 >
@@ -34,6 +35,7 @@ export const IngredientEdit = () => {
                     rules={[
                         {
                             required: true,
+                            message: "Введите цену!"
                         }
                     ]}
                 >
@@ -45,6 +47,7 @@ export const IngredientEdit = () => {
                     rules={[
                         {
                             required: true,
+                            message: "Введите ссылку на изображение!"
                         }
                     ]}
                 >

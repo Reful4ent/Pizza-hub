@@ -19,6 +19,7 @@ export const CategoryCreate = () => {
           rules={[
             {
               required: true,
+              message: "Введите название!"
             },
           ]}
         >

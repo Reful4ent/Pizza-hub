@@ -15,6 +15,7 @@ export const getConfig = async ()=> {
                 }
             }
         );
+        console.log(response.data.data.attributes);
         return response.data.data.attributes;
     } catch (error) {
         console.log(error);

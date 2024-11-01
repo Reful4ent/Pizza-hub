@@ -40,7 +40,10 @@ export const ProductEdit = () => {
 
 
     return (
-       <Edit saveButtonProps={saveButtonProps}>
+       <Edit
+           saveButtonProps={saveButtonProps}
+           title="Изменить продукт"
+       >
            <Form {...formProps} layout="vertical">
                <Form.Item
                    label="Название"
@@ -200,7 +203,3 @@ export const ProductEdit = () => {
        </Edit>
     )
 }
-//<Table {...tableProps} rowKey="id">
-  //  <Table.Column dataIndex="name" title="name"/>
-    //<Table.Column dataIndex="price" title="price"/>
-//</Table>
