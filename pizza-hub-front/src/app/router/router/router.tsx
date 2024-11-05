@@ -1,7 +1,7 @@
 
 import { Navigate, RouteObject } from 'react-router-dom'
 import {MainLayout} from "@/app/layouts/MainLayout/ui/MainLayout";
-import {ErrorPage, MenuPage, MenuProductPage} from "@/app/router/lazyPages/lazyPages";
+import {ErrorPage, MenuPage, MenuProductPage, OrderCheckoutPage} from "@/app/router/lazyPages/lazyPages";
 
 export const router: RouteObject[] = [
     {
@@ -16,6 +16,10 @@ export const router: RouteObject[] = [
             {
                 path: "product/:id",
                 element: <MenuProductPage/>
+            },
+            {
+                path: "checkout",
+                element: <OrderCheckoutPage/>
             },
             {
                 path: "*",

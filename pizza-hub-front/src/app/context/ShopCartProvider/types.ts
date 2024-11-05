@@ -10,6 +10,7 @@ export interface IShopCart {
     minusProductFromCart: (indexOfCart: number) => void;
 }
 
+
 export type ProductListItem = ProductSmallListItem & {
     totalPrice: number;
     count: number;
@@ -20,4 +21,11 @@ export type ProductSmallListItem = {
     product: ProductCardProps;
     currentSize: PriceAttr;
     addedIngredients: IngredientListItem[];
+}
+
+export type OrderType = {
+    shopCart: ProductListItem[];
+    surname: string;
+    name: string;
+    phoneNumber: string;
 }

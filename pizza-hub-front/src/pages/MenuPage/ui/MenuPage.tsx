@@ -109,10 +109,9 @@ export const MenuPage: FC = () => {
 
     return (
         <>
-            <div className="grid grid-cols-5">
+            <div className="grid grid-cols-7">
                 <SearchInput onSubmit={handleInputSubmit}/>
                 <ProductList productList={productList}/>
-                <CategoriesList categories={categories} onClick={handleCategoryClick}/>
                 {
                     isFetching
                     &&

@@ -2,10 +2,12 @@ import {FC, useCallback, useMemo, useState} from "react";
 import {Button} from "@/shared/ui/Button";
 import {useShopCart} from "@/app/context/ShopCartProvider/context";
 import {SmallProductCard} from "@/entities/Product/ProductCard/ui/SmallProductCard/SmallProductCard";
+import {useNavigate} from "react-router-dom";
 
 //ToDo: разнести на компоненты - сделать лист продуктов
 export const ShopCart: FC = () => {
     const shopCart = useShopCart();
+    const navigate = useNavigate();
 
     const [isActive, setIsActive] = useState(false);
 
@@ -55,7 +57,9 @@ export const ShopCart: FC = () => {
                     <div className="h-[10%]">
                         <p>Сумма заказа {shopCart?.shopCartPrice} ₽</p>
                         <Button className={"w-[95%] bg-blue-500 rounded-[30px]"}
-                                children={"К оформлению заказа"}/>
+                                children={"К оформлению заказа"}
+                                onClick={() => navigate('/checkout')}
+                        />
                     </div>
                 </div>
             }

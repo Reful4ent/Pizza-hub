@@ -7,7 +7,7 @@ import {useShopCart} from "@/app/context/ShopCartProvider/context";
 import {Button, ConfigProvider} from "antd";
 import {useConfig} from "@/app/context/ConfigProvider/context";
 
-
+//ToDo: прикрутить необходимые фонты
 export const ProductCard = memo<IProduct>(({productCard}) => {
     const navigate = useNavigate();
     const shopCart = useShopCart();
@@ -32,24 +32,75 @@ export const ProductCard = memo<IProduct>(({productCard}) => {
             {product ?
                 <>
                     <div
-                        className={`m-[10px] p-[25px] w-[322px] h-[552px] border border-[#00000026] rounded-lg flex flex-col`}
+                        className={`m-[10px]
+                                    2xl:p-[28.8px]
+                                    2xl:w-[312px]
+                                    2xl:h-[432px]
+                                    xl:p-[24px]
+                                    xl:w-[260px]
+                                    xl:h-[360px]
+                                    rounded-[10px]
+                                    flex
+                                    flex-col`}
                         style={{boxShadow: `0px 0px 49px 9px ${config?.context?.standardProductCardContext.colorBoxShadowStandardProductButton}`}}
                     >
-                        <div className="w-[100%] h-[55%] flex items-center justify-center">
-                            <Link to={"/product/"+product.id} state={{product: product}}>
+                        <div className="w-[100%]
+                                        h-[84.62%]
+                                        mb-[7.55%]
+                                        flex
+                                        flex-col
+                                        bg-red
+                                        justify-start">
+                            <Link to={"/product/" + product.id}
+                                  state={{product: product}}
+                                  className="w-[100%]
+                                             bg-amber-500
+                                             h-[180px]
+                                             flex
+                                             mb-[7.55%]"
+                            >
                                 {product.images ?
-                                    <img className="w-[100%] rounded-2xl mb-[10px] self-center"
+                                    <img className="w-[100%]
+                                                    2xl:h-[216px]
+                                                    xl:h-[180px]
+                                                    rounded-[12px]
+                                                    self-center"
                                          src={product.images[0]}
                                          alt={product.name}
                                     />
                                     :
                                     <img className="" src='' alt={product.name}/>}
                             </Link>
+                            <p className="line-clamp-1
+                                          xl:text-[17px]
+                                          2xl:text-[20.4px]
+                                          mb-[4.72%]"
+                            >
+                                {product.name}
+                            </p>
+                            <p className="line-clamp-2
+                                          text-[#5C6370]
+                                          xl:text-[11.25px]
+                                          2xl:text-[13.5px]"
+                            >
+                                {product.description}
+                            </p>
                         </div>
-                        <div className="w-[100%] h-[45%] flex flex-col">
-                            <p className="font-openSans line-clamp-1 mb-[5px] font-medium text-[22px]">{product.name}</p>
-                            <p className="font-openSans line-clamp-4 text-ellipsis overflow-hidden text-[#616773] mb-[5px] w-[100%] h-[50%]">{product.description}</p>
-                            <p className="font-openSans mb-[5px] text-[18px] font-semibold">Цена: {Object.values(product.price)[0]['price']} ₽</p>
+                        <div className="
+                                        w-[100%]
+                                        h-[10.26%]
+                                        flex
+                                        justify-between
+                                        self-center
+                                        flex-row">
+                            <p className="font-openSans
+                                          flex
+                                          items-center
+                                          text-[100%]
+                                          font-semibold"
+                            >
+                                {Object.values(product.price)[0]['price']}₽
+                            </p>
                             <ConfigProvider
                                 theme={{
                                     components:{
@@ -67,7 +118,13 @@ export const ProductCard = memo<IProduct>(({productCard}) => {
                                 }}
                             >
                                 <Button
-                                    className="font-openSans rounded-lg h-[25%] font-semibold"
+                                    className="rounded-[10px]
+                                               px-[15px]
+                                               py-[4px]
+                                               h-[100%]
+                                               w-[48.59%]
+                                               font-medium
+                                               text-[95.45%]"
                                     onClick={handleAddClick}
                                     type={config?.context?.standardProductCardContext?.productStandardButtonType}
                                 >

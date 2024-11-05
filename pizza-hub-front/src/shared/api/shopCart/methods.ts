@@ -1,7 +1,7 @@
 import axios from "axios";
 import {urlRoute} from "@/shared/api/route";
 import {token} from "@/shared/api/token";
-import {ProductListItem} from "@/app/context/ShopCartProvider/types";
+import {OrderType, ProductListItem} from "@/app/context/ShopCartProvider/types";
 
 export const setProductFromCartPriceCalculate = async (product: ProductListItem) => {
     try {
@@ -40,6 +40,22 @@ export const getCartPriceCalculate = async (shopCart: ProductListItem[]) => {
             }
         )
         return result.data;
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+export const createOrder = async (order: OrderType) => {
+    try {
+        await axios.get(
+            urlRoute +
+            '/products',
+            {
+                headers: {
+                    'Authorization': `Bearer ` + token,
+                }
+            }
+        )
     } catch (error) {
         console.log(error);
     }
