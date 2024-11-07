@@ -22,7 +22,7 @@ export const MenuPage: FC = () => {
     const pageQuery = searchParams.get('_page') || '';
 
     const [productList, setProductList] = useState<ProductCardProps[]>([]);
-    const [categories, setCategories] = useState<CategoryItem[]>([]);
+    //const [categories, setCategories] = useState<CategoryItem[]>([]);
     const [categoryId, setCategoryId] = useState(Number(categoryIdQuery) || 0);
 
     const [pageNumber, setPageNumber] = useState(0);
@@ -30,10 +30,10 @@ export const MenuPage: FC = () => {
     const [isHasMore, setIsHasMore] = useState(true);
 
     //При начальной загрузки страницы выгружаются категории
-    const fetchCategories = useCallback(async () => {
-        const responseCategories = await getCategories();
-        setCategories(responseCategories.map((element: any) => categoryConverter(element)));
-    }, [])
+    //const fetchCategories = useCallback(async () => {
+    //    const responseCategories = await getCategories();
+    //    setCategories(responseCategories.map((element: any) => categoryConverter(element)));
+    //}, [])
 
 
     //Выгрузка списка продуктов по критериям
@@ -51,18 +51,13 @@ export const MenuPage: FC = () => {
 
 
     //Сортирует список по категории
-    const handleCategoryClick = useCallback(async (id: number) => {
-
-        setCategoryId(id);
-        setPageNumber(0);
-        setProductList([]);
-        setIsHasMore(true);
-
-        setSearchParams({_category_Id: String(id), _search: searchQuery, _page: String(0)})
-
-
-
-    }, [setSearchParams, searchQuery])
+    //const handleCategoryClick = useCallback(async (id: number) => {
+    // setCategoryId(id);
+    // setPageNumber(0);
+    // setProductList([]);
+    // setIsHasMore(true);
+    // setSearchParams({_category_Id: String(id), _search: searchQuery, _page: String(0)})
+    // }, [setSearchParams, searchQuery])
 
 
     //Сортирует список по строковому запросу
@@ -93,9 +88,9 @@ export const MenuPage: FC = () => {
     }, [isHasMore, setSearchParams, categoryIdQuery, searchQuery, pageNumber])
 
 
-    useEffect(() => {
-        fetchCategories();
-    }, [fetchCategories]);
+    //useEffect(() => {
+    //    fetchCategories();
+    //}, [fetchCategories]);
 
 
     useEffect(() => {
@@ -109,7 +104,7 @@ export const MenuPage: FC = () => {
 
     return (
         <>
-            <div className="grid grid-cols-7">
+            <div className="grid grid-cols-4">
                 <SearchInput onSubmit={handleInputSubmit}/>
                 <ProductList productList={productList}/>
                 {

@@ -4,12 +4,11 @@
 
 @layer base {
     @font-face {
-        font-family: 'OpenSans';
-        src: local('OpenSans'),
-        url('@/fonts/OpenSans/OpenSans-Italic-VariableFont_wdth_wght.woff2') format('woff2'),
-        url('@/fonts/OpenSans/OpenSans-Italic-VariableFont_wdth_wght.woff') format('woff'),
-        url('@/fonts/OpenSans/OpenSans-Italic-VariableFont_wdth_wght.ttf') format('ttf'),
-        url('@/fonts/OpenSans/OpenSans-Italic-VariableFont_wdth_wght.eot') format('eot');
+        font-family: 'Montserrat';
+        src: url('../public/fonts/Montserrat/Montserrat-VariableFont_wght.woff2') format('woff2'),
+        url('@/fonts/Montserrat/Montserrat-VariableFont_wght.woff') format('woff'),
+        url('@/fonts/Montserrat/Montserrat-VariableFont_wght.ttf') format('ttf'),
+        url('@/fonts/Montserrat/Montserrat-VariableFont_wght.eot') format('eot');
     }
 
 

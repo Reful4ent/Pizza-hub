@@ -5,6 +5,8 @@ import {SmallProductCard} from "@/entities/Product/ProductCard/ui/SmallProductCa
 import {useNavigate} from "react-router-dom";
 
 //ToDo: разнести на компоненты - сделать лист продуктов
+//ToDo: ВЬЕБАТЬ ФОНТ ДЛЯ КНОПКИ
+
 export const ShopCart: FC = () => {
     const shopCart = useShopCart();
     const navigate = useNavigate();
@@ -33,9 +35,14 @@ export const ShopCart: FC = () => {
     return (
         <>
             <Button
-                className="bg-red-400 p-[10px] col-start-3"
+                className="xl:h-[40px]
+                           xl:bg-amber-500
+                           xl:w-[103px]
+                           xl:px-[20px]
+                           rounded-[9999px]
+                           xl:py-[8px]"
                 onClick={() => setIsActive(!isActive)}
-                children={shopCart?.shopCart.length}/>
+                children="Корзина"/>
             {
                 isActive
                 &&

@@ -1,31 +1,28 @@
-import {FC} from "react";
+import {FC, useMemo} from "react";
 import {CategoriesListProps} from "@/widgets/CategoriesList/types";
 
 
 export const CategoriesList: FC<CategoriesListProps> = ({categories, onClick}) => {
+    const categoriesLi = useMemo(() => {
+        return categories?.map((category, index) => (
+            <li
+                className="text-white text-[14px] font-Montserrat font-semibold hover:text-[#FFD200]"
+                key={index}
+                onClick={() => onClick(category.id)}
+            >
+                {category.name}
+            </li>
+        ))
+    },[categories,onClick])
+
+
     return (
-        <>
-            <div className="col-start-5 flex mt-[25px] items-start ">
-                <div className="border border-[#00000026] m-[36px] rounded-[10px]">
-                    <p className="mr-[30px] p-[10px] font-openSans font-semibold text-[24px]">Категории: </p>
-                    <ul>
-                        <li
-                            className="mt-[5px] px-[10px] py-[5px] font-openSans text-[20px] bg-gradient-to-r from-[#00000026] to-[#fff] li-item"
-                            key={0}
-                            onClick={() => onClick(0)}
-                        >Все</li>
-
-                        {categories?.map((category, index) => (
-                            <li
-                                className="mt-[5px] mb-[5px] px-[10px] py-[5px] font-openSans text-[18px] bg-gradient-to-r from-[#00000026] to-[#fff] focus:bg-blue-800 li-item"
-                                key={index}
-                                onClick={() => onClick(category.id)}
-                            >{category.name}</li>
-                        ))}
-
-                    </ul>
-                </div>
-            </div>
-        </>
+        <ul className="flex
+                       flex-row
+                       justify-center
+                       xl:gap-[17px]
+                       2xl:gap-[40px]">
+            {categoriesLi}
+        </ul>
     )
 }

@@ -7,7 +7,7 @@ export default {
   theme: {
     extend: {
         fontFamily: {
-            'openSans': ['OpenSans','sans-serif'],
+            'Montserrat': ['Montserrat','sans-serif'],
         },
         boxShadow: {
             'custom': '0px 0px 49px 9px #00000026'

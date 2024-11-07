@@ -54,15 +54,13 @@ export const ProductCard = memo<IProduct>(({productCard}) => {
                             <Link to={"/product/" + product.id}
                                   state={{product: product}}
                                   className="w-[100%]
-                                             bg-amber-500
                                              h-[180px]
                                              flex
+                                             rounded-[12px]
                                              mb-[7.55%]"
                             >
                                 {product.images ?
                                     <img className="w-[100%]
-                                                    2xl:h-[216px]
-                                                    xl:h-[180px]
                                                     rounded-[12px]
                                                     self-center"
                                          src={product.images[0]}

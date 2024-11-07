@@ -16,6 +16,7 @@ export const ConfigProvider: FC<PropsWithChildren> = ({ children }) => {
                     headerContext: {
                         name: response.name,
                         iconUrl: response.iconUrl ? response.iconUrl : null,
+                        phoneNumber: response.phoneNumber ?? null,
                     },
                     standardProductCardContext: {
                         productStandardButtonType: response?.productButtonType?.data?.attributes?.type ?? "default",

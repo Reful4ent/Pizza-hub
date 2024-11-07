@@ -39,11 +39,11 @@ export const ConfigEdit = () => {
 
     if (isLoading) return <Spin />
 
-    console.log(data)
 
     let configData= {
         name: data?.data?.data?.attributes.name,
         iconUrl: data?.data?.data?.attributes.iconUrl,
+        phoneNumber: data?.data?.data?.attributes.phoneNumber,
         productButtonType: {
             id: data?.data?.data?.attributes.productButtonType.data.id,
             type: data?.data?.data?.attributes.productButtonType.data.attributes.type,
@@ -61,6 +61,7 @@ export const ConfigEdit = () => {
                 data: {
                     name: values.name,
                     iconUrl: values.iconUrl,
+                    phoneNumber: values.phoneNumber,
                     productButtonType: values.productButtonType,
                     colorStandardProductButton: colorStandardProductButton,
                     colorHoverStandardProductButton: colorHoverStandardProductButton,
@@ -68,7 +69,6 @@ export const ConfigEdit = () => {
                 }
             }
         )
-        console.log(buttonType)
     };
 
 
@@ -93,9 +93,22 @@ export const ConfigEdit = () => {
                 >
                     <Input />
                 </Form.Item>
+
                 <Form.Item
                     label="Иконка - URL"
                     name="iconUrl"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <Input />
+                </Form.Item>
+
+                <Form.Item
+                    label="Номер телефона"
+                    name="phoneNumber"
                     rules={[
                         {
                             required: true,

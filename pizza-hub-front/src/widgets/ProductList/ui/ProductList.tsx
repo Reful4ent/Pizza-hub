@@ -14,7 +14,7 @@ export const ProductList: FC<IProductList> = ({ productList}) =>{
 
     return (
         <>
-            <div className="col-start-2 col-span-5 mt-[25px] flex items-center justify-center ">
+            <div className="col-start-1 col-span-4 mt-[25px] flex items-center justify-center ">
             <ul className="relative grid 2xl:grid-cols-4 xl:grid-cols-4">
                     {products}
                 </ul>
