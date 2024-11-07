@@ -7,7 +7,6 @@ import {useShopCart} from "@/app/context/ShopCartProvider/context";
 import {Button, ConfigProvider} from "antd";
 import {useConfig} from "@/app/context/ConfigProvider/context";
 
-//ToDo: прикрутить необходимые фонты
 export const ProductCard = memo<IProduct>(({productCard}) => {
     const navigate = useNavigate();
     const shopCart = useShopCart();
@@ -72,14 +71,17 @@ export const ProductCard = memo<IProduct>(({productCard}) => {
                             <p className="line-clamp-1
                                           xl:text-[17px]
                                           2xl:text-[20.4px]
-                                          mb-[4.72%]"
+                                          mb-[4.72%]
+                                          font-medium
+                                          font-Montserrat"
                             >
                                 {product.name}
                             </p>
                             <p className="line-clamp-2
                                           text-[#5C6370]
                                           xl:text-[11.25px]
-                                          2xl:text-[13.5px]"
+                                          2xl:text-[13.5px]
+                                          font-Inter"
                             >
                                 {product.description}
                             </p>
@@ -95,7 +97,8 @@ export const ProductCard = memo<IProduct>(({productCard}) => {
                                           flex
                                           items-center
                                           text-[100%]
-                                          font-semibold"
+                                          font-semibold
+                                          font-Montserrat"
                             >
                                 {Object.values(product.price)[0]['price']}₽
                             </p>
@@ -122,6 +125,7 @@ export const ProductCard = memo<IProduct>(({productCard}) => {
                                                h-[100%]
                                                w-[48.59%]
                                                font-medium
+                                               font-Montserrat
                                                text-[95.45%]"
                                     onClick={handleAddClick}
                                     type={config?.context?.standardProductCardContext?.productStandardButtonType}

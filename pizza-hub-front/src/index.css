@@ -6,12 +6,18 @@
     @font-face {
         font-family: 'Montserrat';
         src: url('../public/fonts/Montserrat/Montserrat-VariableFont_wght.woff2') format('woff2'),
-        url('@/fonts/Montserrat/Montserrat-VariableFont_wght.woff') format('woff'),
-        url('@/fonts/Montserrat/Montserrat-VariableFont_wght.ttf') format('ttf'),
-        url('@/fonts/Montserrat/Montserrat-VariableFont_wght.eot') format('eot');
+        url('../public/fonts/Montserrat/Montserrat-VariableFont_wght.woff') format('woff'),
+        url('../public/fonts/Montserrat/Montserrat-VariableFont_wght.ttf') format('ttf'),
+        url('../public/fonts/Montserrat/Montserrat-VariableFont_wght.eot') format('eot');
+    };
+
+    @font-face {
+        font-family: 'Inter';
+        src: url('../public/fonts/Inter/Inter-VariableFont_opsz_wght.woff2') format('woff2'),
+        url('../public/fonts/Inter/Inter-VariableFont_opsz_wght.woff') format('woff'),
+        url('../public/fonts/Inter/Inter-VariableFont_opsz_wght.ttf') format('ttf'),
+        url('../public/fonts/Inter/Inter-VariableFont_opsz_wght.eot') format('eot');
     }
-
-
 }
 
 .line-clamp-2 {

@@ -1,0 +1,1 @@
+export * from '@/features/NavPanel/ui/NavPanel'

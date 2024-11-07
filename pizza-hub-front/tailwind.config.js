@@ -8,6 +8,7 @@ export default {
     extend: {
         fontFamily: {
             'Montserrat': ['Montserrat','sans-serif'],
+            'Inter': ['Inter','sans-serif'],
         },
         boxShadow: {
             'custom': '0px 0px 49px 9px #00000026'

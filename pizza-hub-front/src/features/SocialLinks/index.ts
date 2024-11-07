@@ -1,0 +1,1 @@
+export * from "@/features/SocialLinks/ui/SocialLinks"

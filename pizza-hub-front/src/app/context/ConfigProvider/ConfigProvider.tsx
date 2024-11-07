@@ -16,13 +16,16 @@ export const ConfigProvider: FC<PropsWithChildren> = ({ children }) => {
                     headerContext: {
                         name: response.name,
                         iconUrl: response.iconUrl ? response.iconUrl : null,
-                        phoneNumber: response.phoneNumber ?? null,
+                        contactPhoneNumber: response.contactPhoneNumber ?? null,
                     },
                     standardProductCardContext: {
                         productStandardButtonType: response?.productButtonType?.data?.attributes?.type ?? "default",
                         colorStandardProductButton: response?.colorStandardProductButton ?? "#1677ff",
                         colorHoverStandardProductButton: response?.colorHoverStandardProductButton ?? "#1677ff",
                         colorBoxShadowStandardProductButton: response?.colorBoxShadowStandardProductButton ?? "#00000026"
+                    },
+                    footerContext: {
+                        contactEmail: response.contactEmail ?? null,
                     }
                 }
             )

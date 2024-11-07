@@ -1,6 +1,6 @@
 import {FC} from "react";
 import {Logo} from "@/shared/ui/Logo/ui/Logo";
-import {NavPanel} from "@/features/NavPanel/ui/NavPanel";
+import {NavPanel} from "@/features/NavPanel";
 
 export const Header: FC = () => {
 

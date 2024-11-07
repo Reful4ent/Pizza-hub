@@ -43,7 +43,8 @@ export const ConfigEdit = () => {
     let configData= {
         name: data?.data?.data?.attributes.name,
         iconUrl: data?.data?.data?.attributes.iconUrl,
-        phoneNumber: data?.data?.data?.attributes.phoneNumber,
+        contactPhoneNumber: data?.data?.data?.attributes.contactPhoneNumber,
+        contactEmail: data?.data?.data?.attributes.contactEmail,
         productButtonType: {
             id: data?.data?.data?.attributes.productButtonType.data.id,
             type: data?.data?.data?.attributes.productButtonType.data.attributes.type,
@@ -61,7 +62,8 @@ export const ConfigEdit = () => {
                 data: {
                     name: values.name,
                     iconUrl: values.iconUrl,
-                    phoneNumber: values.phoneNumber,
+                    contactPhoneNumber: values.contactPhoneNumber,
+                    contactEmail: values.contactEmail,
                     productButtonType: values.productButtonType,
                     colorStandardProductButton: colorStandardProductButton,
                     colorHoverStandardProductButton: colorHoverStandardProductButton,
@@ -108,7 +110,19 @@ export const ConfigEdit = () => {
 
                 <Form.Item
                     label="Номер телефона"
-                    name="phoneNumber"
+                    name="contactPhoneNumber"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <Input />
+                </Form.Item>
+
+                <Form.Item
+                    label="Контактная почта"
+                    name="contactEmail"
                     rules={[
                         {
                             required: true,

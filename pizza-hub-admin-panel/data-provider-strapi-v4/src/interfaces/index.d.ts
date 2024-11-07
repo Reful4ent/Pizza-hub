@@ -26,7 +26,8 @@ export interface IProduct {
 export interface IConfig {
   name: string;
   iconUrl: string;
-  phoneNumber: string;
+  contactPhoneNumber: string;
+  contactEmail: string;
   productButtonType: IButtonType;
   colorStandardProductButton: string;
   colorHoverStandardProductButton: string;

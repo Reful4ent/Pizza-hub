@@ -34,7 +34,7 @@ export const NavPanel:FC = () => {
             </div>
             <CategoriesList categories={categories} onClick={() => console.log()}/>
             <div className="flex flex-row items-center">
-                <p className="font-medium text-[18px] text-white mr-[20px] font-Montserrat">{config?.context?.headerContext.phoneNumber}</p>
+                <p className="font-medium text-[18px] text-white mr-[20px] font-Montserrat">{config?.context?.headerContext.contactPhoneNumber}</p>
                 <ShopCart/>
             </div>
         </nav>
