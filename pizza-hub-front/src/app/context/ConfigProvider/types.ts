@@ -13,7 +13,13 @@ export interface IContext {
     },
     footerContext: {
         contactEmail: string;
+        socialLinks: SocialLinkType[];
     },
+}
+
+export type SocialLinkType = {
+    linkTo: string,
+    linkForImg: string
 }
 
 export interface IConfigContextValue {

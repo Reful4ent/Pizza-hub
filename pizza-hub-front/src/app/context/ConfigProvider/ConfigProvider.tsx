@@ -10,7 +10,7 @@ export const ConfigProvider: FC<PropsWithChildren> = ({ children }) => {
 
     const getConfigFrom = useCallback(async () => {
         const result= getConfig().then((response) => {
-            console.log(response)
+            console.log(response.socialLinks)
             setConfig(
                 {
                     headerContext: {
@@ -26,6 +26,7 @@ export const ConfigProvider: FC<PropsWithChildren> = ({ children }) => {
                     },
                     footerContext: {
                         contactEmail: response.contactEmail ?? null,
+                        socialLinks: response.socialLinks ?? [],
                     }
                 }
             )

@@ -1,39 +1,28 @@
-import {FC} from "react";
+import {FC, useMemo} from "react";
+import {ISocialLinks} from "@/features/SocialLinks/types";
 
 
-export const SocialLinks: FC = () => {
+export const SocialLinks: FC<ISocialLinks> = ({socialLinks}) => {
+
+    const socialLinksLi = useMemo(() => {
+        return socialLinks?.map((links, index) => (
+            <li key={index}>
+                <a href={links.linkTo} target="_blank">
+                    <img
+                        src={links.linkForImg}
+                        className="h-[32px]"
+                        alt="link"
+                    />
+                </a>
+            </li>
+        ))
+    },[socialLinks])
+
+    console.log(socialLinks)
+
     return (
         <ul className="flex flex-row xl:gap-[8px] 2xl:gap-[12px]">
-            <li>
-                <a>
-                    <img
-                        src="https://raw.githubusercontent.com/Reful4ent/Small_React_projects/c3b774eede507e599f57794f883df8cb250af44d/public/Img/telegram.svg"
-                        className="h-[32px]"
-                    />
-                </a>
-            </li>
-            <li>
-                <a>
-                    <img
-                        src="https://raw.githubusercontent.com/Reful4ent/Small_React_projects/c3b774eede507e599f57794f883df8cb250af44d/public/Img/telegram.svg"
-                        className="h-[32px]"
-                    />
-                </a>
-            </li>
-            <li>
-                <a>
-                    <img
-                        src="https://raw.githubusercontent.com/Reful4ent/Small_React_projects/c3b774eede507e599f57794f883df8cb250af44d/public/Img/telegram.svg"
-                        className="h-[32px]"/>
-                </a>
-            </li>
-            <li>
-                <a>
-                    <img
-                        src="https://raw.githubusercontent.com/Reful4ent/Small_React_projects/c3b774eede507e599f57794f883df8cb250af44d/public/Img/telegram.svg"
-                        className="h-[32px]"/>
-                </a>
-            </li>
+            {socialLinksLi}
         </ul>
     )
 }
